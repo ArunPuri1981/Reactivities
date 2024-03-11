@@ -1,37 +1,31 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import axios from 'axios';
-import { List, ListItem } from 'semantic-ui-react';
+import { Container, List, ListItem } from 'semantic-ui-react';
 import { IActivity } from '../models/IActivity'
 import MenuExamplePointing from './Navbar';
+import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 
 
 
 function App() {
-  const [activities,setActivities]=useState<IActivity[]>([]); 
+  const [activities, setActivities] = useState<IActivity[]>([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     axios.get<IActivity[]>('http://localhost:5000/api/activities')
-    .then(response=>{
-      console.log(response);
-      setActivities(response.data)
-    })
-  },[])
+      .then(response => {
+        console.log(response);
+        setActivities(response.data)
+      })
+  }, [])
 
   return (
-    <div>
-    {/* <Header as ='h2' icon='users' block content='Reactivities'/> */}
-    <MenuExamplePointing/> 
-    
-    <List>
-      {activities.map(activity=>(
-        <ListItem key={activity.id}>
-          {activity.title}
-        </ListItem>
-      ))}
-
-    </List>
-    
-    </div>
+    <Fragment>
+      {/* <Header as ='h2' icon='users' block content='Reactivities'/> */}
+      <MenuExamplePointing />
+      <Container style={{ marginTop: '7em' }}>
+        <ActivityDashboard activities={activities} />
+      </Container>
+    </Fragment>
   )
 }
 

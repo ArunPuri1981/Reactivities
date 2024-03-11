@@ -12,6 +12,10 @@ export default class MenuExamplePointing extends Component {
         const { activeItem } = this.state
         return(
         <Menu pointing>
+          <Menu.Item header>
+            <img src='/assets/logo.png' alt='logo' style={{marginRight:'10px'}}/>
+            Reactivities 
+          </Menu.Item>
           <MenuItem
             name='Activities'
             active={activeItem === 'Activities'}

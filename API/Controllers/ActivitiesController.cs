@@ -38,7 +38,6 @@ namespace API.Controllers
        {
             await Mediator.Send(new Create.Command {Activity=activity});
             return Ok();
-
        }
 
        [HttpPut("{Id}")]
@@ -55,7 +54,6 @@ namespace API.Controllers
           await  Mediator.Send(new Delete.Command{ Id=id });
           return Ok();
        }
-
 
     }
 }
